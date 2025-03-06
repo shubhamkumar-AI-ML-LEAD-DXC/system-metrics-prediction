@@ -289,9 +289,9 @@ def landing_page():
 
 @st.cache_data
 def load_data(file_path):
-        cpu_data = pd.read_excel(file_path, sheet_name='CPU', engine='openpyxl')
-        memory_data = pd.read_excel(file_path, sheet_name='Memory', engine='openpyxl') 
-        disk_data = pd.read_excel(file_path, sheet_name='Disk', engine='openpyxl')
+    cpu_data = pd.read_excel(file_path, sheet_name='CPU', engine='openpyxl')
+    memory_data = pd.read_excel(file_path, sheet_name='Memory', engine='openpyxl') 
+    disk_data = pd.read_excel(file_path, sheet_name='Disk', engine='openpyxl')
 
     cpu_columns = [
         "FQDN", "Datetime",
