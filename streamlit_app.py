@@ -393,7 +393,7 @@ def display_overview_tab(cpu_data, memory_data, disk_data):
         server_disk_mean.columns = ['Server Name', 'Average Disk Utilization (%)']
         st.write(server_disk_mean.head(5).to_html(index=False), unsafe_allow_html=True)
 
-    # Plot CPU utilization
+    # Plot CPU utilization:
     col1, col2, col3 = st.columns(3)
 
     with col1:
