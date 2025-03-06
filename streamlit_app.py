@@ -289,27 +289,14 @@ def landing_page():
 
 @st.cache_data
 def load_data(file_path):
-    # Check if the file is an Excel file based on its extension
-    def is_excel_file(file_path):
-        return file_path.lower().endswith(('.xlsx', '.xls'))
-    
-    if is_excel_file(file_path):
-        try:
-            cpu_data = pd.read_excel(file_path, sheet_name='CPU', engine='openpyxl')
-            memory_data = pd.read_excel(file_path, sheet_name='Memory', engine='openpyxl')
-            disk_data = pd.read_excel(file_path, sheet_name='Disk', engine='openpyxl')
-        except Exception as e:
-            st.error(f"Error loading Excel file: {e}")
-            return None, None, None
-    else:
-        st.error("The file is not a valid Excel file.")
-        return None, None, None
+    cpu_data = pd.read_excel(file_path, sheet_name='CPU')
+    memory_data = pd.read_excel(file_path, sheet_name='Memory')
+    disk_data = pd.read_excel(file_path, sheet_name='Disk')
 
-    # Process CPU data
     cpu_columns = [
-        "FQDN", "Datetime", "GBL_CPU_TOTAL_UTIL", "forecastvalues"
+        "FQDN", "Datetime",
+        "GBL_CPU_TOTAL_UTIL", "forecastvalues"
     ]
-    
     cpu_data.columns = cpu_columns
     cpu_data['Datetime'] = pd.to_datetime(cpu_data['Datetime'], errors='coerce')
     cpu_data['Hour'] = cpu_data['Datetime'].dt.hour
